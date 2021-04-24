@@ -1,0 +1,37 @@
+﻿@model Price
+
+@{
+    ViewBag.Title="Price Quotation";
+    //var session = new PriceSession(Context.Session);
+    //Price price = session.GetPrice();
+}
+
+<header>
+    <h1 class="jumbotron text-center bg-success">
+        <span class="fa fa-money-bill-alt title">@ViewBag.Title</span>
+    </h1>
+</header>
+<form asp-action="Index" method="post">
+    <div class="row form-group">
+        <label class="col-sm-3 col-md-3 col-lg-3" asp-for="Subtotal"></label>
+        <input class="col-sm-3 col-md-3 col-lg-3" asp-for="Subtotal"/>
+        <span class="col-sm-6 col-md-6 col-lg-6 text-danger" asp-validation-for="Subtotal"></span>
+    </div>
+    <div class="row form-group">
+        <label class="col-sm-3 col-md-3 col-lg-3" asp-for="DiscountPercent"></label>
+        <input class="col-sm-3 col-md-3 col-lg-3" asp-for="DiscountPercent"/>
+        <span class="col-sm-6 col-md-6 col-lg-6 text-danger" asp-validation-for="DiscountPercent"></span>
+    </div>
+    <div class="row form-group">
+        <label class="col-sm-3 col-md-3 col-lg-3" asp-for="DiscountAmount"></label>
+        <div class="col-sm-9 col-md-9 col-lg-9">@Model.GetDiscountAmount()</div>
+    </div>
+    <div class="row form-group">
+        <label class="col-sm-3 col-md-3 col-lg-3" asp-for="Total"></label>
+        <div class="col-sm-9 col-md-9 col-lg-9">@Model.GetTotal()</div>
+    </div>
+    <div class="links">
+        <button type="submit" class="btn btn-success" asp-action="Index">Calculate</button>
+        <a class="btn btn-success" asp-controller="Home" asp-action="Index">Clear</a>
+    </div>
+</form>
